@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="carousel-container">
+            <div class="carousel">
+
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="text-content">
+                            <h2>Gabriela Rodrigues</h2>
+                            <p>Sou professora e tenho uma paixão enorme por gente ouvir e transformar vidas é o que me
+                                move.
+                                Decidi
+                                me aventurar no mundo do copywriting em busca de novas formas de comunicar, conectar e
+                                impactar.
+                                Apaixonada por comunicação, pessoas e conexões, encontrei no copywriting a forma
+                                perfeita de
+                                transformar palavras em pontes — que aproximam, engajam e inspiram. Foi por isso que
+                                escolhi
+                                ser
+                                parte dessa arte estratégica da escrita.
+                            </p>
+                        </div>
+                        <div class="image-content">
+                            <img src="./assets/img/profile.jpg" alt="Foto do perfil">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="text-content">
+                            <h2>A proposta foi criar títulos para a Jeep.</h2>
+                            <div class="two-images">
+                                <img src="./assets/img/jeep-1.png" alt="Projeto 2A">
+                                <img src="./assets/img/jeep-2.png" alt="Projeto 2B">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="text-content img-config">
+                            <h2>A proposta foi criar uma açao para MC Donald com o intuito de criar um novo olhar sobre
+                                a marca.
+                            </h2>
+                        </div>
+                        <div class="image-content">
+                            <img class="picture-adju" src="./assets/img/McFarm.png" alt="Projeto 3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="text-content">
+                            <h2> A ideia foi mostrar que a vida nao para e que correr e expenciar novos desafios faz
+                                parte da vida.
+                            </h2>
+                            <div class="image-content">
+                                <img src="./assets/img/nike.png" alt="Projeto 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button id="prev-btn" aria-label="Slide anterior">Anterior</button>
+            <button id="next-btn" aria-label="Próximo slide">Próximo</button>
+        </div>
+
+        <div class="carousel-indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+            <div class="indicator" data-index="3"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.querySelector('.carousel');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const indicators = document.querySelectorAll('.indicator');
+
+            let currentSlide = 0;
+            const slideCount = slides.length;
+            let autoSlide;
+
+            // Atualiza o carrossel
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateCarousel();
+            }
+
+            function resetAutoSlide() {
+                clearInterval(autoSlide);
+                autoSlide = setInterval(nextSlide, 5000);
+            }
+
+            // Buttons
+            nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
+
+            // Indicators
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function () {
+                    currentSlide = parseInt(this.getAttribute('data-index'));
+                    updateCarousel();
+                    resetAutoSlide();
+                });
+            });
+
+            // Auto slide
+            resetAutoSlide();
+
+            // Pause with mouse
+            carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+            carousel.addEventListener('mouseleave', resetAutoSlide);
+        });
+    </script>
+</body>
+
+</html>

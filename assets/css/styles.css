@@ -1,0 +1,320 @@
+/* Variáveis CSS para consistência */
+:root {
+  --primary-color: #3a86ff;
+  --secondary-color: #ff006e;
+  --accent-color: #8338ec;
+  --text-color: #2d3748;
+  --light-bg: #f8f9fa;
+  --dark-bg: #1a202c;
+  --transition: all 0.3s ease;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+/* Reset e estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background: linear-gradient(135deg, var(--light-bg) 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* === CARROSSEL === */
+.carousel-container {
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  height: 600px;
+  position: relative;
+  background: white;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  height: 100%;
+}
+
+.text-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  animation: fadeIn 0.8s ease;
+  line-height: 30px;
+}
+
+.text-content h2 {
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.text-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--accent-color)
+  );
+  border-radius: 2px;
+}
+
+.text-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  color: #4a5568;
+}
+
+.text-content.img-config h2{
+  font-size: 2rem;
+  padding-bottom: 15px;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  max-width: 700px;
+  animation: slideIn 0.8s ease;
+  margin: 0 auto;
+}
+
+.image-content img {
+  width: 70%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  object-fit: cover;
+}
+
+.image-content img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.two-images {
+  display: flex;
+  gap: 25px;
+  margin: 20px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.two-images img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.two-images img:hover {
+  transform: scale(1.03);
+}
+
+
+/* === CONTROLES === */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0 20px;
+}
+
+.carousel-controls button {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--accent-color)
+  );
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow);
+}
+
+.carousel-controls button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(58, 134, 255, 0.4);
+}
+
+.carousel-controls button:active {
+  transform: translateY(0);
+}
+
+/* === INDICADORES === */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.indicator {
+  width: 14px;
+  height: 14px;
+  background: #cbd5e0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.indicator.active {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--accent-color)
+  );
+  transform: scale(1.3);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 968px) {
+  .carousel-container {
+    height: auto;
+    min-height: 600px;
+  }
+
+  .slide {
+    padding: 30px 20px;
+  }
+
+  .slide-content {
+    gap: 30px;
+  }
+
+  .text-content h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .slide {
+    padding: 25px 15px;
+  }
+
+  .text-content,
+  .image-content {
+    min-width: 100%;
+  }
+
+  .text-content h2 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .text-content h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .text-content p {
+    text-align: center;
+  }
+
+  .carousel-controls button {
+    padding: 12px 20px;
+  }
+
+  .two-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .two-images img {
+    max-width: 100%;
+  }
+}
+
+/* Melhorias de acessibilidade */
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.indicator:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
